@@ -12,7 +12,7 @@ def main():
     
     st.sidebar.image('image/sidebar.png')
 
-    side_list = ['About', '해외여행', '국내여행', 'Data Upload']
+    side_list = ['about', '해외여행', '국내여행', 'Data Upload']
     selected_trand = st.sidebar.selectbox('보고 싶은 트렌드를 선택하세요!', side_list)
     
     if selected_trand != side_list[-1]:
