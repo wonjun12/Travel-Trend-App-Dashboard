@@ -4,6 +4,7 @@ import streamlit as st
 import plotly.express as px
 
 def run_travel_func(df, travel, start_date, end_date):
+    st.image(f'image/{travel}.png')
     st.header(f'{travel} 검색 트랜드') 
     st.info(f'검색 일자 : {start_date.date()} ~ {end_date.date()}')
 
