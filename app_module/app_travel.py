@@ -3,17 +3,10 @@ import streamlit as st
 
 import plotly.express as px
 
-def run_travel_func(df, travel, start_date, end_date):
-    st.image(f'image/{travel}.png')
-    st.header(f'{travel} 검색 트랜드') 
+def run_travel_func(df,start_date, end_date):
     st.info(f'검색 일자 : {start_date.date()} ~ {end_date.date()}')
 
-    df_sarch = df.loc[df['LWPRT_CTGRY_NM'] == travel, ]
-
-    if end_date == start_date:
-        df_sarch = df_sarch.loc[df_sarch['SCCNT_DE'] == end_date, ]
-    else:
-        df_sarch = df_sarch.loc[(df_sarch['SCCNT_DE'] <= end_date) & (df_sarch['SCCNT_DE'] >= start_date), ]
+    df_sarch = df.loc[(df['SCCNT_DE'] <= end_date) & (df['SCCNT_DE'] >= start_date), ]
 
     if df_sarch.index.shape[0] != 0:
         st.subheader('기본 검색 순위 확인하기')
