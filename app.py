@@ -7,7 +7,7 @@ from app_module.app_about import run_about_func
 from dateutil.relativedelta import relativedelta
 
 def main(): 
-    st.sidebar.header('이번 여행 검색 트렌드는???')
+    st.sidebar.header('이전 여행 검색 트렌드')
     
     st.sidebar.image('image/sidebar.png')
 
