@@ -2,11 +2,15 @@
 import streamlit as st
 
 import plotly.express as px
+import pandas as pd
 
 from datetime import timedelta
 def date_range(start, end ,df):
-    dates = [(start + timedelta(days=i)).strftime("%Y-%m-%d") for i in range((end-start).days+1)]
-    print(df)
+    dates = pd.date_range(start, end, freq='D')
+    #print(df[0])
+    #print(set(dates) & set(df))
+    #dates = [(start + timedelta(days=i)).strftime("%Y-%m-%d") for i in range((end-start).days+1)]
+    #print(df)
     
     # for date in df:
     #     print(date)
@@ -20,7 +24,8 @@ def run_travel_func(df,start_date, end_date):
 
     if df_sarch.index.shape[0] != 0:
         st.subheader('기본 검색 순위 확인하기')
-        print(date_range(start_date, end_date, df_sarch['SCCNT_DE'].unique()))
+        date_range(start_date, end_date, df_sarch['SCCNT_DE'].unique())
+        
         with st.expander('없는 데이터 날짜'):
             st.text('날짜')
 
