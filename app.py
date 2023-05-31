@@ -3,6 +3,7 @@ import pandas as pd
 
 from app_module.app_travel import run_travel_func
 from app_module.app_about import run_about_func
+from app_module.app_upload import run_upload_csv
 
 from dateutil.relativedelta import relativedelta
 
@@ -11,17 +12,11 @@ def main():
     
     st.sidebar.image('image/sidebar.png')
 
-    side_list = ['About', '해외여행', '국내여행']
+    side_list = ['About', '해외여행', '국내여행', 'Data Upload']
     selected_trand = st.sidebar.selectbox('보고 싶은 트렌드를 선택하세요!', side_list)
-    # about
-    if selected_trand == side_list[0]:
-        st.sidebar.image('image/about.png')
-    # 외국 여행
-    elif selected_trand == side_list[1]:
-        st.sidebar.image('image/op.png')
-    # 한국 여행
-    else:
-        st.sidebar.image('image/korea.png')
+    
+    if selected_trand != side_list[-1]:
+        st.sidebar.image(f'image/{selected_trand}.png')
 
     df = pd.read_csv('travel_data/travel_data.csv')
     df['SCCNT_DE'] = pd.to_datetime(df['SCCNT_DE'])
@@ -29,6 +24,8 @@ def main():
     # about
     if selected_trand == side_list[0]:
         run_about_func(df)
+    elif selected_trand == side_list[-1]:
+        run_upload_csv()
     # 외국, 한국 여행
     else : 
         date_list = ['1개월', '3개월', '6개월', '1년', '사용자 지정']
