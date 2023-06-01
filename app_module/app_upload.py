@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from datetime import date
 
+import numpy as np
 def run_upload_csv():
     st.header('현재 없는 데이터를 추가하실수 있습니다.')
     data1, data2 = st.tabs(['해외여행 데이터', '국내여행 데이터'])
@@ -12,34 +13,40 @@ def run_upload_csv():
     
     st.text('\n')
     st.subheader('데이터 추가하기')
-    upload_data = st.file_uploader('추가할 데이터를 넣으세요!', type=['csv'])
-
-    if upload_data is not None:
-        st.subheader('원본 데이터 확인')
-        df = pd.read_csv(upload_data)
-        st.dataframe(df)
-        
-        try:
-            df.drop(['SEQ_NO', 'UPPER_CTGRY_NM'], axis=1, inplace=True)
-            if df['LWPRT_CTGRY_NM'].unique() == '해외여행':
-                df.drop(['CNTT_NM'], axis=1, inplace=True)
-                df.rename(columns={'COUNTRY_NM' : 'AREA_NM'}, inplace=True)
+    upload_data = st.file_uploader('추가할 데이터를 넣으세요!', type=['csv'], accept_multiple_files=True)
+    if len(upload_data) != 0:
+        df = pd.DataFrame()
+        travel_df = pd.read_csv('travel_data/travel_data.csv')
+        for i in range(len(upload_data)):
+            st.subheader(f'{i+1}번째 원본 데이터 확인')
+            df_read = pd.read_csv(upload_data[i])
+            st.dataframe(df_read)
             
-            df['SCCNT_DE'] = df['SCCNT_DE'].map(lambda x : date(x//10000, x%10000//100, x%100))
-
-            st.success('가공된 데이터 확인')
-            st.dataframe(df)
-
-            if st.button('데이터 추가 하기'):
-                travel_df = pd.read_csv('travel_data/travel_data.csv')
+            try:
+                df_read.drop(['SEQ_NO', 'UPPER_CTGRY_NM'], axis=1, inplace=True)
+                if df_read['LWPRT_CTGRY_NM'].unique() == '해외여행':
+                    df_read.drop(['CNTT_NM'], axis=1, inplace=True)
+                    df_read.rename(columns={'COUNTRY_NM' : 'AREA_NM'}, inplace=True)
                 
-                if str(df['SCCNT_DE'][0]) in travel_df.loc[travel_df['LWPRT_CTGRY_NM'] == df['LWPRT_CTGRY_NM'][0], 'SCCNT_DE'].unique():
+                df_read['SCCNT_DE'] = df_read['SCCNT_DE'].map(lambda x : date(x//10000, x%10000//100, x%100))
+
+                st.success(f'{i+1}번째 가공된 데이터 확인')
+                st.dataframe(df_read)
+ 
+                if str(df_read['SCCNT_DE'][0]) in travel_df.loc[travel_df['LWPRT_CTGRY_NM'] == df_read['LWPRT_CTGRY_NM'][0], 'SCCNT_DE'].unique():
                     st.error('해당 날짜 데이터가 이미 존재합니다!')
                 else :
-                    save_df = pd.concat([travel_df, df.iloc[:10, ]], ignore_index=True)
-                    save_df.to_csv('travel_data/travel_data.csv', index=False, encoding='utf-8-sig')
-                    st.success('데이터 저장 완료!')
+                    if len(df.index) != 0 and df_read['SCCNT_DE'][0] in df.loc[df['LWPRT_CTGRY_NM'] == df_read['LWPRT_CTGRY_NM'][0], 'SCCNT_DE'].unique():
+                        st.error('해당 날짜 데이터가 이미 존재합니다!')
+                    else:
+                        df = pd.concat([df, df_read.iloc[:10, ]], ignore_index=True)
+                        st.info('추가할 수 있는 데이터입니다!')        
+            except:
+                st.error('정상적인 데이터가 아닙니다! 링크된 데이터를 넣어주세요!')
 
-        except:
-            st.error('정상적인 데이터가 아닙니다! 링크된 데이터를 넣어주세요!')
+        if st.button('데이터 추가 하기'):
+            save_df = pd.concat([travel_df, df], ignore_index=True)
+            st.dataframe(save_df)
+            save_df.to_csv('travel_data/travel_data.csv', index=False, encoding='utf-8-sig')
+            st.success('데이터 저장 완료!')
         
