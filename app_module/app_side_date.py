@@ -7,7 +7,7 @@ def run_side_date(df):
     end_ = df['SCCNT_DE'].max()
     start_ = end_
 
-    date_list = ['1개월', '3개월', '6개월', '1년', '사용자 지정']
+    date_list = ['최근 1개월', '최근 3개월', '최근 6개월', '최근 1년', '사용자 지정']
     selected_date = st.sidebar.selectbox('보고 싶은 날짜를 선택하세요!', date_list)
     
     date_dic = {

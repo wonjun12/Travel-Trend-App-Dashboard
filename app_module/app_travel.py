@@ -20,12 +20,12 @@ def run_travel_func(df,start_date, end_date):
 
     if df_sarch.index.shape[0] != 0:
         st.subheader('기본 검색 순위 확인하기')
-
-        not_dates = date_range(start_date, end_date, df_sarch['SCCNT_DE'].unique())
-        if len(not_dates) != 0:
-            with st.expander('없는 데이터 날짜'):
-                for not_date in not_dates:
-                    st.text(not_date.date()) 
+        
+        # not_dates = date_range(start_date, end_date, df_sarch['SCCNT_DE'].unique())
+        # if len(not_dates) != 0:
+        #     with st.expander('없는 데이터 날짜'):
+        #         for not_date in not_dates:
+        #             st.text(not_date.date()) 
         
         
 
