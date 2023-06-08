@@ -24,8 +24,11 @@
  ![Plotly](https://img.shields.io/badge/Python-Plotly.express-blue)
 
 
- - ## 3) 사이트 
-    - [ec2-52-78-84-125.ap-northeast-2.compute.amazonaws.com:10000/](http://ec2-52-78-84-125.ap-northeast-2.compute.amazonaws.com:10000/)
+ - ## 3) 링크 
+    - 사이트 : [ec2-52-78-84-125.ap-northeast-2.compute.amazonaws.com:10000/](http://ec2-52-78-84-125.ap-northeast-2.compute.amazonaws.com:10000/)
+    - 다운로드
+      - [국내 여행](https://www.bigdata-culture.kr/bigdata/user/data_market/detail.do?id=25c89d50-1e55-11eb-a4e6-a9a03a61580b)
+      - [해외 여행](https://www.bigdata-culture.kr/bigdata/user/data_market/detail.do?id=2ed02b20-1e55-11eb-a4e6-a9a03a61580b)
 
 
 ## 2. 기능
