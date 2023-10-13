@@ -14,7 +14,8 @@
    - 과거 해외 및 국내 여행 검색 순위에 따라 트렌드를 확인할 수 있게 해주는 앱니다.
    - 과거의 데이터를 통해 이후 미래의 검색 트렌드를 예측하게 해주는 앱입니다.
 
-    > ![이미지](/readme/readme_image1.PNG)
+    > ![image](https://github.com/wonjun12/Travel-Trend-App-Dashboard/assets/108748094/42b1c146-353e-42fd-8185-81f8e24ed0f4)
+
 
 
  - ## 2) 사용 기술 
@@ -50,6 +51,10 @@
     - 원하는 날짜 범위의 해외, 국내 여행의 검색량을 예측하고, 순위를 나타냅니다.
   - **Data Upload**
     - 최신 데이터가 추가 되거나, 과거 없는 데이터 추가시에 쉽게 추가할 수 있습니다.
+   ![image](https://github.com/wonjun12/Travel-Trend-App-Dashboard/assets/108748094/23c2727a-6a33-4afb-a154-3f0cb2c9c82e)
+![image](https://github.com/wonjun12/Travel-Trend-App-Dashboard/assets/108748094/f3d143a7-0638-4fb0-89f6-561646f74abd)
+
+
 
 ## 3. 프로젝트 문제 해결
   1. ### **프로젝트에 사용할 파일들이 일별로 너무 많아 따로 작업을 해야했다.**
